@@ -97,6 +97,11 @@ const pokeBack = document.getElementById('display')
 
 const type = document.getElementById('type')
 
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
 async function pokeGET() {
     //  --    GENERAL   --  //
     const pokeSearch = input.value.toLowerCase()
@@ -140,6 +145,23 @@ async function pokeGET() {
     const stage1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage1SPECIES['data']['id']}/`)
     const stage2 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage2SPECIES['data']['id']}/`)
     const stage3 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage3SPECIES['data']['id']}/`)
+
+
+    // --     SOUNDS    --  //
+    let sound = document.getElementById('sound')
+
+    let name = pokeAPI['data']['name']
+
+    let ID = pokeAPI['data']['id']
+    if(parseInt(ID) < 100) ID = '0' + ID
+
+    sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
+
+    console.log(sound)
+
+
+
+
 
     // SLIDE 1 
     const pokeName = pokeAPI['data']['name']
@@ -207,9 +229,6 @@ async function pokeGET() {
             break
         default:
             console.log('TYPE NOT FOUND!')
-	
-	
-
     }
 
 
