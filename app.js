@@ -166,6 +166,13 @@ async function pokeGET() {
     
     const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
     const stage3IMG = stage3['data']['sprites']['front_default']
+
+    console.log(stage1NAME)
+    console.log(stage1IMG)
+    console.log(stage2NAME)
+    console.log(stage2IMG)
+    console.log(stage3NAME)
+    console.log(stage3IMG)
 }
 
 button[0].addEventListener('click', function(e) {pokeGET()})
