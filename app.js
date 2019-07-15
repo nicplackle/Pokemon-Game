@@ -93,6 +93,10 @@ stage3IMAGE: stage3['data']['sprites']['front_default']
 const input = document.getElementById('searchbar')
 const button = document.getElementsByTagName('button')
 
+const pokeBack = document.getElementById('display')
+
+const type = document.getElementById('type')
+
 async function pokeGET() {
     //  --    GENERAL   --  //
     const pokeSearch = input.value
@@ -140,8 +144,74 @@ async function pokeGET() {
     // SLIDE 1 
     const pokeName = pokeAPI['data']['name']
     const pokeID = pokeAPI['data']['id']
+    const pokeType = pokeAPI['data']['types'][0]['type']['name']
     const pokeImage = pokeAPI['data']['sprites']['front_default']
     const pokeText = flavorListEN[Math.floor(Math.random() * flavorListEN.length)]
+
+    type.src = `./img/type/${pokeType}.png`
+
+    switch(pokeType) {
+        case 'dark':
+            pokeBack.style.backgroundColor = '#9400D3'
+            break
+        case 'psychic':
+            pokeBack.style.backgroundColor = '#800080'
+            break	
+        case 'fighting':
+            pokeBack.style.backgroundColor = '#F5F5DC'
+            break	
+        case 'ground':
+            pokeBack.style.backgroundColor = '#A52A2A'
+            break	
+        case 'electric':
+            pokeBack.style.backgroundColor = '#FFFF66'
+            break	
+        case 'bug':
+            pokeBack.style.backgroundColor = '#228B22'
+            break
+        case 'fire':
+            pokeBack.style.backgroundColor = '#E86100'
+            break	
+        case 'ice':
+            pokeBack.style.backgroundColor = '#ADD8E6'
+            break	
+        case 'water':
+            pokeBack.style.backgroundColor = '#3399FF'
+            break	
+        case 'rock':
+            pokeBack.style.backgroundColor = '#9400D3'
+            break	
+        case 'fairy':
+            pokeBack.style.backgroundColor = '#FF00FF'
+            break	
+        case 'flying':
+            pokeBack.style.backgroundColor = '#99FFFF'
+            break	
+        case 'poison':
+            pokeBack.style.backgroundColor = '#9370DB'
+            break	
+        case 'normal':
+            pokeBack.style.backgroundColor = '#CCFFCC'
+            break	
+        case 'ghost':
+            pokeBack.style.backgroundColor = '#F8F7ED'
+            break	
+        case 'dragon':
+            pokeBack.style.backgroundColor = '#FF6347'
+            break	
+        case 'grass':
+            pokeBack.style.backgroundColor = '#008000'
+            break	
+        case 'steel':
+            pokeBack.style.backgroundColor = '#C0C0C0'
+            break
+        default:
+            console.log('TYPE NOT FOUND!')
+	
+	
+
+    }
+
 
     // SLIDE 2
     const Speed = pokeAPI['data']['stats'][0]['base_stat']
@@ -151,9 +221,11 @@ async function pokeGET() {
     const Attack =  pokeAPI['data']['stats'][4]['base_stat']
     const HP =  pokeAPI['data']['stats'][5]['base_stat']
 
+    // ToDo stat int to bar
+
     // SLIDE 3
     const moves = new Array()
-    for(let x = 0; x < 4; x++) {
+    for(let x = 0; x < 6; x++) {
         moves.push(pokeAPI['data']['moves'][x]['move']['name']) 
     }
 
@@ -167,12 +239,7 @@ async function pokeGET() {
     const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
     const stage3IMG = stage3['data']['sprites']['front_default']
 
-    console.log(stage1NAME)
-    console.log(stage1IMG)
-    console.log(stage2NAME)
-    console.log(stage2IMG)
-    console.log(stage3NAME)
-    console.log(stage3IMG)
+    
 }
 
 button[0].addEventListener('click', function(e) {pokeGET()})
