@@ -15,12 +15,6 @@ body {
   position: relative;
 }
 
-form {
-  top: 37%;
-  left: 63%;
-  max-width: 30%;
-}
-
 #searchbar {
   font-family: "Press Start 2P", cursive;
   font-size: 1.4em;
