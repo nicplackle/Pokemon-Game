@@ -99,7 +99,7 @@ const type = document.getElementById('type')
 
 async function pokeGET() {
     //  --    GENERAL   --  //
-    const pokeSearch = input.value
+    const pokeSearch = input.value.toLowerCase()
     const pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
 
     //console.log(pokeAPI['data'])
