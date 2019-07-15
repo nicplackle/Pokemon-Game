@@ -97,7 +97,7 @@ const pokeBack = document.getElementById('display')
 
 const type = document.getElementById('type')
 
-const capitalize = (s) => {
+function capitalize(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
