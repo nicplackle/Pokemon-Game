@@ -1,9 +1,8 @@
 html {
   height: 100%;
-
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 body {
@@ -37,9 +36,9 @@ body {
   background: transparent;
   border: none;
   position: absolute;
-  top: 40%;
-  left: 57%;
-  max-width: 20%;
+  top: 39%;
+  left: 60%;
+  max-width: 30%;
 }
 
 /* removes border from input box */
@@ -54,12 +53,16 @@ button {
   border: none;
   background: transparent;
   position: absolute;
-  top: 77%;
-  left: 68.5%;
+  top: 79.5%;
+  left: 78.5%;
   max-width: 30%;
   color: rgb(211, 200, 200);
 }
 
 button:hover {
   cursor: pointer;
+}
+
+button:focus {
+  outline: none;
 }
