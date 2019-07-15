@@ -1,0 +1,50 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#pokedexbackground {
+  background-image: url("./img/pokedexbackground.svg");
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+}
+
+form {
+  top: 37%;
+  left: 63%;
+  max-width: 30%;
+}
+
+#searchbar {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.4em;
+  color: rgb(233, 229, 17);
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 40%;
+  left: 57%;
+  max-width: 20%;
+}
+
+/* removes border from input box */
+input:focus {
+  outline: none;
+}
+
+button {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1em;
+  style: none;
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: 77%;
+  left: 68.5%;
+  max-width: 30%;
+  color: rgb(211, 200, 200);
+}
