@@ -148,9 +148,9 @@ async function pokeGET() {
 
 
     // --     SOUNDS    --  //
-    let sound = document.getElementById('sound')
+    const sound = document.getElementById('sound')
 
-    let name = pokeAPI['data']['name']
+    const name = pokeAPI['data']['name']
 
     let ID = pokeAPI['data']['id']
     if(parseInt(ID) < 100) ID = '0' + ID
