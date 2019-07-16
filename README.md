@@ -1,6 +1,6 @@
 # Pokémon-Game
 
-![Pokédex](https://media.giphy.com/media/OSvRsgnCeTE0U/giphy.gif)
+<img src="https://img.rankedboost.com/wp-content/uploads/2016/07/Pokemon-Go-Pok%C3%A9dex-300x229.png" align="center" />
 
 ## Mission
 
