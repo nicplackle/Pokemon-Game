@@ -101,6 +101,13 @@ const subType = document.getElementById('subType')
 const yellowLight = document.getElementById('yellowlight')
 const redLight = document.getElementById('redlight')
 
+const hpText = document.getElementById('hp-text')
+const attackText = document.getElementById('attack-text') 
+const defenseText = document.getElementById('defense-text') 
+const speedText = document.getElementById('speed-text') 
+const specialAttackText = document.getElementById('specialAttack-text') 
+const specialDefenseText = document.getElementById('specialDefense-text')  
+
 function capitalize(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
@@ -108,18 +115,26 @@ function capitalize(s) {
 
 var pokeSearch, sound
 var id, ID
-var displayName, displayID, displayImage, displayText
+var displayName, displayID, displayImage, displayText, displaySpeed, displayAttack, displayDefense, displayHP, displaySpecialAttack, displaySpecialDefense
 
 async function pokeGET(pokeSearch) {
   //  --    GENERAL   --  //
   var pokeAPI;
   try {
-    pokeAPI = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`
-    );
+    pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
+    redLight.classList.remove('none')
+    yellowLight.classList.add('none')
+
+    hpText.classList.remove('none')
+    attackText.classList.remove('none')
+    defenseText.classList.remove('none')
+    speedText.classList.remove('none')
+    specialAttackText.classList.remove('none')
+    specialDefenseText.classList.remove('none')
   } catch (TypeError) {
     input.value = "";
     input.placeholder = "POKE NOT FOUND!";
+    yellowLight.classList.remove('none')
   }
 
   //console.log(pokeAPI['data'])
@@ -195,78 +210,17 @@ async function pokeGET(pokeSearch) {
   const pokeText =
     flavorListEN[Math.floor(Math.random() * flavorListEN.length)];
 
-  const displayName = document.getElementById("name");
+  displayName = document.getElementById("name");
   displayName.innerHTML = `${pokeName}`;
 
-  const displayID = document.getElementById("id");
+  displayID = document.getElementById("id");
   displayID.innerHTML = `${pokeID}`;
 
-  const displayImage = document.getElementById("image");
+  displayImage = document.getElementById("image");
   displayImage.src = `${pokeImage}`;
 
-  const displayText = document.getElementById("poke-text");
+  displayText = document.getElementById("poke-text");
   displayText.innerHTML = `${pokeText}`;
-
-  type.src = `./img/type/${pokeType}.png`;
-
-  switch (pokeType) {
-    case "dark":
-      pokeBack.style.backgroundColor = "#9400D3";
-      break;
-    case "psychic":
-      pokeBack.style.backgroundColor = "#800080";
-      break;
-    case "fighting":
-      pokeBack.style.backgroundColor = "#F5F5DC";
-      break;
-    case "ground":
-      pokeBack.style.backgroundColor = "#A52A2A";
-      break;
-    case "electric":
-      pokeBack.style.backgroundColor = "#FFFF66";
-      break;
-    case "bug":
-      pokeBack.style.backgroundColor = "#228B22";
-      break;
-    case "fire":
-      pokeBack.style.backgroundColor = "#E86100";
-      break;
-    case "ice":
-      pokeBack.style.backgroundColor = "#ADD8E6";
-      break;
-    case "water":
-      pokeBack.style.backgroundColor = "#3399FF";
-      break;
-    case "rock":
-      pokeBack.style.backgroundColor = "#9400D3";
-      break;
-    case "fairy":
-      pokeBack.style.backgroundColor = "#FF00FF";
-      break;
-    case "flying":
-      pokeBack.style.backgroundColor = "#99FFFF";
-      break;
-    case "poison":
-      pokeBack.style.backgroundColor = "#9370DB";
-      break;
-    case "normal":
-      pokeBack.style.backgroundColor = "#CCFFCC";
-      break;
-    case "ghost":
-      pokeBack.style.backgroundColor = "#F8F7ED";
-      break;
-    case "dragon":
-      pokeBack.style.backgroundColor = "#FF6347";
-      break;
-    case "grass":
-      pokeBack.style.backgroundColor = "#008000";
-      break;
-    case "steel":
-      pokeBack.style.backgroundColor = "#C0C0C0";
-      break;
-    default:
-      console.log("TYPE NOT FOUND!");
-  }
 
   // SLIDE 2
   const Speed = pokeAPI["data"]["stats"][0]["base_stat"];
@@ -276,22 +230,22 @@ async function pokeGET(pokeSearch) {
   const Attack = pokeAPI["data"]["stats"][4]["base_stat"];
   const HP = pokeAPI["data"]["stats"][5]["base_stat"];
 
-  const displaySpeed = document.getElementById("speed");
+  displaySpeed = document.getElementById("speed");
   displaySpeed.innerHTML = `${Speed}`;
 
-  const displaySpecialDefense = document.getElementById("special-defense");
+  displaySpecialDefense = document.getElementById("special-defense");
   displaySpecialDefense.innerHTML = `${Special_Defense}`;
 
-  const displaySpecialAttack = document.getElementById("special-attack");
+  displaySpecialAttack = document.getElementById("special-attack");
   displaySpecialAttack.innerHTML = `${Special_Attack}`;
 
-  const displayDefense = document.getElementById("defense");
+  displayDefense = document.getElementById("defense");
   displayDefense.innerHTML = `${Defense}`;
 
-  const displayAttack = document.getElementById("attack");
+  displayAttack = document.getElementById("attack");
   displayAttack.innerHTML = `${Attack}`;
 
-  const displayHP = document.getElementById("hp");
+  displayHP = document.getElementById("hp");
   displayHP.innerHTML = `${HP}`;
 
   // ToDo stat int to bar
@@ -333,11 +287,10 @@ async function pokeGET(pokeSearch) {
     if (weight < 100) pokeSubType = "light"
     if (baseEXP > 100) pokeSubType = "clever"
     if (baseHappiness > 70) pokeSubType = "cute" 
-    if (specialAttack > 90) pokeSubType = "cool"
+    if (Special_Attack > 90) pokeSubType = "cool"
     if (attack > 75) pokeSubType = "boom"
-    if (speed > 100) pokeSubType = "shadow"
+    if (Speed > 100) pokeSubType = "shadow"
     if (defense > 80) pokeSubType = "tough"
-    
 
     type.src = `./img/type/${pokeType}.png`
     subType.src = `./img/subType/${pokeSubType}.png`
@@ -411,7 +364,21 @@ function reset() {
     displayImage.src = './img/trans.png'
     displayName.innerHTML = ''
     displayText.innerHTML = ''
+    displayAttack.innerHTML = ''
+    displayDefense.innerHTML = ''
+    displaySpecialAttack.innerHTML = ''
+    displaySpecialDefense.innerHTML = ''
+    displayAttack.innerHTML = ''
+    displayDefense.innerHTML = ''
+    displayHP.innerHTML = ''
+    displaySpeed.innerHTML = ''
     redLight.classList.add('none')
+    hpText.classList.add('none')
+    attackText.classList.add('none')
+    defenseText.classList.add('none')
+    speedText.classList.add('none')
+    specialAttackText.classList.add('none')
+    specialDefenseText.classList.add('none')
 }
 // Slideshow //
 
