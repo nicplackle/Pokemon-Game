@@ -24,7 +24,7 @@ body {
   width: 34%;
   position: absolute;
 
-  background-color: rgb(44, 45, 54)
+  background-color: rgb(44, 45, 54);
 }
 
 #type {
@@ -67,6 +67,22 @@ body {
 
 #prev:hover {
   background: red;
+}
+
+#reset {
+  top: 79.5%;
+  left: 61%;
+
+  position: absolute;
+}
+
+#playSound {
+  top: 71%;
+  left: 7.4%;
+
+  position: absolute;
+
+  font-size: 20pt;
 }
 
 /* removes border from input box */

@@ -102,7 +102,7 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-var pokeSearch
+var pokeSearch, sound
 var id, ID
 
 async function pokeGET(pokeSearch) {
@@ -162,7 +162,7 @@ async function pokeGET(pokeSearch) {
 
 
     // --     SOUNDS    --  //
-    const sound = document.getElementById('sound')
+    sound = document.getElementById('sound')
 
     const name = pokeAPI['data']['name']
 
@@ -275,6 +275,12 @@ async function pokeGET(pokeSearch) {
 
 }
 
+function reset() {
+    pokeBack.style.backgroundColor = 'rgb(44, 45, 54)'    
+    type.src = "./img/null.png"
+    input.value = ''
+}
+
 // SEARCH BUTTON
 button[0].addEventListener('click', function() {
     pokeSearch = input.value.toLowerCase()
@@ -284,14 +290,24 @@ button[0].addEventListener('click', function() {
     pokeGET(pokeSearch)
 })
 
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 13) {
+        pokeSearch = input.value.toLowerCase()
+
+        input.placeholder = 'Pokémon name or id' // Reset after mistake
+    
+        pokeGET(pokeSearch)
+    }
+})
+
 
 
 // NEXT and PREVIOUS BUTTONS
-button[1].addEventListener("click", function() {
+button[2].addEventListener("click", function() {
     pokeGET(id - 1)
 })
 
-button[2].addEventListener("click", function() {
+button[3].addEventListener("click", function() {
     pokeGET(id + 1)
 })
 
@@ -304,5 +320,27 @@ document.addEventListener("keydown", function(event) {
 document.addEventListener("keydown", function(event) {
     if (event.keyCode == 40) {
         pokeGET(id + 1)
+    }
+})
+
+// RESET BUTTON
+button[1].addEventListener("click", function() {
+    reset()
+})
+
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 27) {
+        reset()
+    }
+})
+
+// SOUND BUTTON
+button[4].addEventListener("click", function() {
+    sound.play()
+})
+
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 83) {
+        sound.play()
     }
 })
