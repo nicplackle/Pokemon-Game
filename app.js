@@ -320,9 +320,9 @@ async function pokeGET(pokeSearch) {
   if (baseEXP > 100) pokeSubType = "clever";
   if (baseHappiness > 70) pokeSubType = "cute";
   if (Special_Attack > 90) pokeSubType = "cool";
-  if (attack > 75) pokeSubType = "boom";
+  if (Attack > 75) pokeSubType = "boom";
   if (Speed > 100) pokeSubType = "shadow";
-  if (defense > 80) pokeSubType = "tough";
+  if (Defense > 80) pokeSubType = "tough";
 
   type.src = `./img/type/${pokeType}.png`;
   subType.src = `./img/subType/${pokeSubType}.png`;
