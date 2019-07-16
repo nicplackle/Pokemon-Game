@@ -284,8 +284,8 @@ button:focus {
 }
 
 #poke-text {
-  top: 75%;
-  
+  bottom: 0;
+
   font-family: "Press Start 2P", cursive;
 
   font-size: 7pt;
