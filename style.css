@@ -17,6 +17,37 @@ body {
   position: relative;
 }
 
+
+/* flashing blue light */
+.bluelight {
+  position: absolute;
+  border-radius: 50%;
+  height: 82px;
+  width: 82px;
+  top: 8.4%;
+  left: 6.4%;
+  margin: 0;
+  opacity: 0.7;
+  background: radial-gradient(circle at 90px 90px, #aeccec, rgb(175, 220, 230));
+  -webkit-animation: bluelight 1s ease-in-out infinite alternate;
+  -moz-animation: bluelight 1s ease-in-out infinite alternate;
+  animation: bluelight 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes bluelight {
+  from {
+    box-shadow: 0 0 10px rgb(3, 47, 105), 0 0 20px rgb(36, 11, 11),
+      0 0 30px #223bca, 0 0 40px #0400e6, 0 0 50px #12424e, 0 0 60px #06336d;
+  }
+
+  to {
+    box-shadow: 0 0 20px rgb(218, 231, 235), 0 0 30px #4dffff, 0 0 40px #84c2db,
+      0 0 50px #80b8dd, 0 0 60px #d3dedf, 0 0 70px #7db4b8;
+  }
+}
+
+/* end flashing blue light */
+
 #display {
   top: 30%;
   left: 7.9%;
