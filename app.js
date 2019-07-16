@@ -394,6 +394,7 @@ function reset() {
   displayHP.innerHTML = "";
   displaySpeed.innerHTML = "";
   redLight.classList.add("none");
+  yellowLight.classList.add("none");
   hpText.classList.add("none");
   attackText.classList.add("none");
   defenseText.classList.add("none");
