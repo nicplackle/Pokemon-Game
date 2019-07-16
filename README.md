@@ -32,17 +32,26 @@ Test the live version of the App [here](https://nicplackle.github.io/Pokemon-Gam
 This is an added feature where you hear the signature sound the displayed Pokémon makes.
 
 ```javascript
-const sound = document.getElementById("sound");
+sound = document.getElementById("sound")
 
-const name = pokeAPI["data"]["name"];
+const name = pokeAPI["data"]["name"]
 
-id = pokeAPI["data"]["id"];
-if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id;
-if (parseInt(id) < 10) ID = "00" + id;
+id = pokeAPI["data"]["id"]
 
-sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`;
+ID = id
+if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id
+if (parseInt(id) < 10) ID = "00" + id
 
-console.log(sound);
+randomInt = Math.floor((Math.random() * 97) + 1)
+if (randomInt < 10) randomInt = '0' + randomInt
+
+if (name == 'pikachu') {
+ sound.src = `./sounds/${ID} - ${capitalize(name)} (${randomInt}).wav`
+} else {
+ sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
+}
+
+console.log(sound)
 ```
 
 ## Credits
