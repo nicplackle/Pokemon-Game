@@ -226,3 +226,19 @@ button:hover {
 button:focus {
   outline: none;
 }
+
+#size {
+  top: 82.9%;
+  left: 8%;
+
+  font-size: 12pt;
+
+  max-width: 162px;
+
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+
+  font-family: "Press Start 2P", cursive; 
+}

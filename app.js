@@ -267,6 +267,8 @@ async function pokeGET(pokeSearch) {
     }
 
     // SLIDE 4
+
+    /*
     const stage1NAME = evolutionAPI['data']['chain']['species']['name']
     const stage1IMG = stage1['data']['sprites']['front_default']
 
@@ -275,7 +277,15 @@ async function pokeGET(pokeSearch) {
 
     const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
     const stage3IMG = stage3['data']['sprites']['front_default']
+    */
 
+    // size 
+    const size = document.getElementById('size')
+
+    const height = pokeAPI['data']['height']
+    const weight = pokeAPI['data']['weight']
+
+    size.innerHTML = `H:${height} W:${weight}`
 }
 
 function reset() {
