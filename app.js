@@ -106,6 +106,8 @@ const speedText = document.getElementById("speed-text");
 const specialAttackText = document.getElementById("specialAttack-text");
 const specialDefenseText = document.getElementById("specialDefense-text");
 
+const playSound = document.getElementById('playSound')
+
 function capitalize(s) {
   if (typeof s !== "string") return "";
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -504,7 +506,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 // SOUND BUTTON
-button[4].addEventListener("click", function() {
+playSound.addEventListener("click", function() {
   sound.play();
 });
 
