@@ -209,7 +209,7 @@ async function pokeGET(pokeSearch) {
   if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id
   if (parseInt(id) < 10) ID = "00" + id
 
-  randomInt = Math.floor(Math.random() * 97)
+  randomInt = Math.floor((Math.random() * 97) + 1)
   if (randomInt < 10) randomInt = '0' + randomInt
 
   if (name == 'pikachu') {
