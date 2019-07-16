@@ -53,6 +53,9 @@ if (name == 'pikachu') {
 
 console.log(sound)
 ```
+## Screenshots
+![alt-text](https://i.ibb.co/Jcf375w/Knipsel.jpg)
+![alt-text](https://i.ibb.co/mtBJNWP/Knipsel.jpg)
 
 ## Credits
 
