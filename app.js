@@ -105,8 +105,17 @@ function capitalize(s) {
 async function pokeGET() {
     //  --    GENERAL   --  //
     const pokeSearch = input.value.toLowerCase()
-    const pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
 
+    input.placeholder = 'Pokémon name or id' // Reset after mistake
+
+    var pokeAPI
+    try {
+        pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
+    } catch (TypeError) {
+        input.value = ''
+        input.placeholder = 'POKE NOT FOUND!'
+    }
+    
     //console.log(pokeAPI['data'])
 
 
@@ -129,22 +138,28 @@ async function pokeGET() {
 
 
     //  --   EVOLUTION  --  //
-    const evolutionURL = speciesAPI['data']['evolution_chain']['url']
-    const evolutionAPI = await axios.get(evolutionURL)
 
-    //console.log(evolutionAPI['data'])
+    try {
+        const evolutionURL = speciesAPI['data']['evolution_chain']['url']
+        const evolutionAPI = await axios.get(evolutionURL)
+    
+        //console.log(evolutionAPI['data'])
+    
+        const stage1URL = evolutionAPI['data']['chain']['species']['url']
+        const stage2URL = evolutionAPI['data']['chain']['evolves_to'][0]['species']['url']
+        const stage3URL = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['url']
+    
+        const stage1SPECIES = await axios.get(stage1URL)
+        const stage2SPECIES = await axios.get(stage2URL)
+        const stage3SPECIES = await axios.get(stage3URL)
+    
+        const stage1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage1SPECIES['data']['id']}/`)
+        const stage2 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage2SPECIES['data']['id']}/`)
+        const stage3 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage3SPECIES['data']['id']}/`)
+    } catch (TypeError) {
+        console.log('NO EVOLUTION TREE!')
+    }
 
-    const stage1URL = evolutionAPI['data']['chain']['species']['url']
-    const stage2URL = evolutionAPI['data']['chain']['evolves_to'][0]['species']['url']
-    const stage3URL = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['url']
-
-    const stage1SPECIES = await axios.get(stage1URL)
-    const stage2SPECIES = await axios.get(stage2URL)
-    const stage3SPECIES = await axios.get(stage3URL)
-
-    const stage1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage1SPECIES['data']['id']}/`)
-    const stage2 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage2SPECIES['data']['id']}/`)
-    const stage3 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage3SPECIES['data']['id']}/`)
 
 
     // --     SOUNDS    --  //
@@ -153,8 +168,9 @@ async function pokeGET() {
     const name = pokeAPI['data']['name']
 
     let ID = pokeAPI['data']['id']
-    if(parseInt(ID) < 100) ID = '0' + ID
-
+    if(parseInt(ID) >= 10 && parseInt(ID) < 100)  ID = '0' + ID
+    if(parseInt(ID) < 10) ID = '00' + ID
+ 
     sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
 
     console.log(sound)
@@ -260,4 +276,4 @@ async function pokeGET() {
 
 }
 
-button[0].addEventListener('click', function(e) {pokeGET()})
+button[0].addEventListener('click', function() {pokeGET()})

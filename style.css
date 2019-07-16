@@ -23,10 +23,16 @@ body {
   height: 31.8%;
   width: 34%;
   position: absolute;
+
+  background-color: rgb(44, 45, 54)
 }
 
 #type {
-  width: 50px;
+  height: 32px;
+  width: 104px;
+  position: absolute;
+  top: 65.8%;
+  left: 58.4%;
 }
 
 #searchbar {
