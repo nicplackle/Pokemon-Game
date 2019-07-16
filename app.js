@@ -56,6 +56,7 @@ flavorText: flavorListEN[...integer...]
 
 */
 
+
 /* EVOLUTION CHAIN
 
 const evolutionURL = speciesAPI['data']['evolution_chain']['url']
@@ -88,21 +89,22 @@ stage3IMAGE: stage3['data']['sprites']['front_default']
 
 */
 
-const input = document.getElementById("searchbar");
-const button = document.getElementsByTagName("button");
 
-const pokeBack = document.getElementById("display");
+const input = document.getElementById('searchbar')
+const button = document.getElementsByTagName('button')
 
-const type = document.getElementById("type");
-const subType = document.getElementById("subType");
+const pokeBack = document.getElementById('display')
+
+const type = document.getElementById('type')
+const subType = document.getElementById('subType')
 
 function capitalize(s) {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-var pokeSearch, sound;
-var id, ID;
+var pokeSearch, sound
+var id, ID
 
 async function pokeGET(pokeSearch) {
     //  --    GENERAL   --  //
@@ -114,7 +116,7 @@ async function pokeGET(pokeSearch) {
         input.placeholder = 'POKE NOT FOUND!'
     }
 
-    console.log(pokeAPI)
+    console.log(pokeAPI['data'])
 
 
     // --     SPECIES   --  //
@@ -195,8 +197,6 @@ async function pokeGET(pokeSearch) {
     const displayName = document.getElementById('name')
     displayName.innerHTML = `${pokeName}`
 
-    
-
     // SLIDE 2
     const speed = pokeAPI['data']['stats'][0]['base_stat']
     const specialDefense = pokeAPI['data']['stats'][1]['base_stat']
@@ -227,96 +227,97 @@ async function pokeGET(pokeSearch) {
     const stage3IMG = stage3['data']['sprites']['front_default']
     */
 
-  // size
-  const size = document.getElementById("size");
+    // size 
+    const size = document.getElementById('size')
 
-  const height = pokeAPI["data"]["height"];
-  const weight = pokeAPI["data"]["weight"];
+    const height = pokeAPI['data']['height']
+    const weight = pokeAPI['data']['weight']
 
-  size.innerHTML = `H:${height} W:${weight}`;
+    size.innerHTML = `H:${height} W:${weight}`
 
-  // TYPE BUTTONS
-  let pokeSubType;
+    // TYPE BUTTONS
+    let pokeSubType
 
-  const baseHappiness = speciesAPI["data"]["base_happiness"];
-  const baseEXP = pokeAPI["data"]["base_experience"];
+    const baseHappiness = speciesAPI['data']['base_happiness']
+    const baseEXP = pokeAPI['data']['base_experience']
 
-  pokeSubType = "default";
-  if (weight < 100) pokeSubType = "light";
-  if (baseEXP > 100) pokeSubType = "clever";
-  if (baseHappiness > 70) pokeSubType = "cute";
-  if (specialAttack > 90) pokeSubType = "cool";
-  if (attack > 75) pokeSubType = "boom";
-  if (speed > 100) pokeSubType = "shadow";
-  if (defense > 80) pokeSubType = "tough";
+    pokeSubType = "default"
+    if (weight < 100) pokeSubType = "light"
+    if (baseEXP > 100) pokeSubType = "clever"
+    if (baseHappiness > 70) pokeSubType = "cute" 
+    if (specialAttack > 90) pokeSubType = "cool"
+    if (attack > 75) pokeSubType = "boom"
+    if (speed > 100) pokeSubType = "shadow"
+    if (defense > 80) pokeSubType = "tough"
+    
 
-  type.src = `./img/type/${pokeType}.png`;
-  subType.src = `./img/subType/${pokeSubType}.png`;
-
-  switch (pokeType) {
-    case "dark":
-      pokeBack.style.backgroundColor = "#9400D3";
-      break;
-    case "psychic":
-      pokeBack.style.backgroundColor = "#800080";
-      break;
-    case "fighting":
-      pokeBack.style.backgroundColor = "#F5F5DC";
-      break;
-    case "ground":
-      pokeBack.style.backgroundColor = "#A52A2A";
-      break;
-    case "electric":
-      pokeBack.style.backgroundColor = "#FFFF66";
-      break;
-    case "bug":
-      pokeBack.style.backgroundColor = "#228B22";
-      break;
-    case "fire":
-      pokeBack.style.backgroundColor = "#E86100";
-      break;
-    case "ice":
-      pokeBack.style.backgroundColor = "#ADD8E6";
-      break;
-    case "water":
-      pokeBack.style.backgroundColor = "#3399FF";
-      break;
-    case "rock":
-      pokeBack.style.backgroundColor = "#9400D3";
-      break;
-    case "fairy":
-      pokeBack.style.backgroundColor = "#FF00FF";
-      break;
-    case "flying":
-      pokeBack.style.backgroundColor = "#99FFFF";
-      break;
-    case "poison":
-      pokeBack.style.backgroundColor = "#9370DB";
-      break;
-    case "normal":
-      pokeBack.style.backgroundColor = "#CCFFCC";
-      break;
-    case "ghost":
-      pokeBack.style.backgroundColor = "#F8F7ED";
-      break;
-    case "dragon":
-      pokeBack.style.backgroundColor = "#FF6347";
-      break;
-    case "grass":
-      pokeBack.style.backgroundColor = "#008000";
-      break;
-    case "steel":
-      pokeBack.style.backgroundColor = "#C0C0C0";
-      break;
-    default:
-      console.log("TYPE NOT FOUND!");
-  }
+    type.src = `./img/type/${pokeType}.png`
+    subType.src = `./img/subType/${pokeSubType}.png`
+ 
+    switch (pokeType) {
+        case 'dark':
+            pokeBack.style.backgroundColor = '#9400D3'
+            break
+        case 'psychic':
+            pokeBack.style.backgroundColor = '#800080'
+            break
+        case 'fighting':
+            pokeBack.style.backgroundColor = '#F5F5DC'
+            break
+        case 'ground':
+            pokeBack.style.backgroundColor = '#A52A2A'
+            break
+        case 'electric':
+            pokeBack.style.backgroundColor = '#FFFF66'
+            break
+        case 'bug':
+            pokeBack.style.backgroundColor = '#228B22'
+            break
+        case 'fire':
+            pokeBack.style.backgroundColor = '#E86100'
+            break
+        case 'ice':
+            pokeBack.style.backgroundColor = '#ADD8E6'
+            break
+        case 'water':
+            pokeBack.style.backgroundColor = '#3399FF'
+            break
+        case 'rock':
+            pokeBack.style.backgroundColor = '#9400D3'
+            break
+        case 'fairy':
+            pokeBack.style.backgroundColor = '#FF00FF'
+            break
+        case 'flying':
+            pokeBack.style.backgroundColor = '#99FFFF'
+            break
+        case 'poison':
+            pokeBack.style.backgroundColor = '#9370DB'
+            break
+        case 'normal':
+            pokeBack.style.backgroundColor = '#CCFFCC'
+            break
+        case 'ghost':
+            pokeBack.style.backgroundColor = '#F8F7ED'
+            break
+        case 'dragon':
+            pokeBack.style.backgroundColor = '#FF6347'
+            break
+        case 'grass':
+            pokeBack.style.backgroundColor = '#008000'
+            break
+        case 'steel':
+            pokeBack.style.backgroundColor = '#C0C0C0'
+            break
+        default:
+            console.log('TYPE NOT FOUND!')
+    }
 }
 
 function reset() {
-  pokeBack.style.backgroundColor = "rgb(44, 45, 54)";
-  type.src = "./img/null.png";
-  input.value = "";
+    pokeBack.style.backgroundColor = 'rgb(44, 45, 54)'    
+    type.src = "./img/null.png"
+    input.value = ''
 }
 // Slideshow //
 
@@ -325,98 +326,100 @@ showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-  showSlides((slideIndex += n));
+    showSlides(slideIndex += n);
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
-  showSlides((slideIndex = n));
+    showSlides(slideIndex = n);
 }
 
 // slideshow
 
 function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
 }
+
 
 // NEXT and PREV SLIDE
 document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 39) {
-    plusSlides(1);
-  } else if (event.keyCode == 37) {
-    plusSlides(-1);
-  }
-});
+    if(event.keyCode == 39){
+        plusSlides(1)
+    } else if(event.keyCode == 37) {
+        plusSlides(-1)
+    }
+})
+
 
 // SEARCH BUTTON
-button[0].addEventListener("click", function() {
-  pokeSearch = input.value.toLowerCase();
+button[0].addEventListener('click', function () {
+    pokeSearch = input.value.toLowerCase()
 
-  input.placeholder = "Pokémon name or id"; // Reset after mistake
+    input.placeholder = 'Pokémon name or id' // Reset after mistake
 
-  pokeGET(pokeSearch);
-});
+    pokeGET(pokeSearch)
+})
 
-document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 13) {
-    pokeSearch = input.value.toLowerCase();
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 13) {
+        pokeSearch = input.value.toLowerCase()
 
-    input.placeholder = "Pokémon name or id"; // Reset after mistake
-
-    pokeGET(pokeSearch);
-  }
-});
+        input.placeholder = 'Pokémon name or id' // Reset after mistake
+    
+        pokeGET(pokeSearch)
+    }
+})
 
 // NEXT and PREVIOUS BUTTONS
 button[2].addEventListener("click", function() {
-  pokeGET(id - 1);
-});
+    pokeGET(id - 1)
+})
 
 button[3].addEventListener("click", function() {
-  pokeGET(id + 1);
-});
+    pokeGET(id + 1)
+})
 
-document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 38) {
-    pokeGET(id - 1);
-  }
-});
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 38) {
+        pokeGET(id - 1)
+    }
+})
 
-document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 40) {
-    pokeGET(id + 1);
-  }
-});
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 40) {
+        pokeGET(id + 1)
+    }
+})
 
 // RESET BUTTON
 button[1].addEventListener("click", function() {
-  reset();
-});
+    reset()
+})
 
-document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 27) {
-    reset();
-  }
-});
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 27) {
+        reset()
+    }
+})
 
 // SOUND BUTTON
 button[4].addEventListener("click", function() {
-  sound.play();
-});
+    sound.play()
+})
 
 document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 83) {
-    sound.play();
-  }
-});
+    if (event.keyCode == 83) {
+        sound.play()
+    }
+})
