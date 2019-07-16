@@ -1,4 +1,4 @@
-# Pokemon-Game
+# Pokémon-Game
 
 ![Pokédex](https://media.giphy.com/media/OSvRsgnCeTE0U/giphy.gif)
 
@@ -16,10 +16,10 @@ Create a Pokédex App using an API
 
 - You can search a pokémon by name and by ID
 - Of said pokémon you need to show:
-  .._ The ID-number
-  .._ An image (sprite)
-  .._ At least 4 "moves"
-  .._ The previous evolution, only if it exists, along with their name and image
+        * The ID-number
+        * An image (sprite)
+        * At least 4 "moves"
+        * The previous evolution, only if it exists, along with their name and image
 
 _Bonus_ Make your web page look like a pokédex by adding a little CSS
 
