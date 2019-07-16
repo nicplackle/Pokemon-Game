@@ -114,13 +114,13 @@ async function pokeGET(pokeSearch) {
         input.value = ''
         input.placeholder = 'POKE NOT FOUND!'
     }
-    
+
     //console.log(pokeAPI['data'])
 
 
     // --     SPECIES   --  //
     const speciesURL = pokeAPI['data']['species']['url']
-    const speciesAPI = await axios.get(speciesURL) 
+    const speciesAPI = await axios.get(speciesURL)
 
     //console.log(speciesAPI['data'])
 
@@ -129,7 +129,7 @@ async function pokeGET(pokeSearch) {
     const flavorList = speciesAPI['data']['flavor_text_entries']
     const flavorListEN = new Array()
 
-    for(let i = 0; i < flavorList.length; i++){
+    for (let i = 0; i < flavorList.length; i++) {
         if (flavorList[i]['language']['name'] == 'en') flavorListEN.push(flavorList[i]['flavor_text'])
     }
 
@@ -141,17 +141,17 @@ async function pokeGET(pokeSearch) {
     try {
         const evolutionURL = speciesAPI['data']['evolution_chain']['url']
         const evolutionAPI = await axios.get(evolutionURL)
-    
+
         //console.log(evolutionAPI['data'])
-    
+
         const stage1URL = evolutionAPI['data']['chain']['species']['url']
         const stage2URL = evolutionAPI['data']['chain']['evolves_to'][0]['species']['url']
         const stage3URL = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['url']
-    
+
         const stage1SPECIES = await axios.get(stage1URL)
         const stage2SPECIES = await axios.get(stage2URL)
         const stage3SPECIES = await axios.get(stage3URL)
-    
+
         const stage1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage1SPECIES['data']['id']}/`)
         const stage2 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage2SPECIES['data']['id']}/`)
         const stage3 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage3SPECIES['data']['id']}/`)
@@ -167,9 +167,9 @@ async function pokeGET(pokeSearch) {
     const name = pokeAPI['data']['name']
 
     id = pokeAPI['data']['id']
-    if(parseInt(id) >= 10 && parseInt(id) < 100)  ID = '0' + id
-    if(parseInt(id) < 10) ID = '00' + id
- 
+    if (parseInt(id) >= 10 && parseInt(id) < 100) ID = '0' + id
+    if (parseInt(id) < 10) ID = '00' + id
+
     sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
 
     console.log(sound)
@@ -185,60 +185,63 @@ async function pokeGET(pokeSearch) {
     const pokeImage = pokeAPI['data']['sprites']['front_default']
     const pokeText = flavorListEN[Math.floor(Math.random() * flavorListEN.length)]
 
+    const displayName = document.getElementById('name')
+    displayName.innerHTML = pokeName
+
     type.src = `./img/type/${pokeType}.png`
 
-    switch(pokeType) {
+    switch (pokeType) {
         case 'dark':
             pokeBack.style.backgroundColor = '#9400D3'
             break
         case 'psychic':
             pokeBack.style.backgroundColor = '#800080'
-            break	
+            break
         case 'fighting':
             pokeBack.style.backgroundColor = '#F5F5DC'
-            break	
+            break
         case 'ground':
             pokeBack.style.backgroundColor = '#A52A2A'
-            break	
+            break
         case 'electric':
             pokeBack.style.backgroundColor = '#FFFF66'
-            break	
+            break
         case 'bug':
             pokeBack.style.backgroundColor = '#228B22'
             break
         case 'fire':
             pokeBack.style.backgroundColor = '#E86100'
-            break	
+            break
         case 'ice':
             pokeBack.style.backgroundColor = '#ADD8E6'
-            break	
+            break
         case 'water':
             pokeBack.style.backgroundColor = '#3399FF'
-            break	
+            break
         case 'rock':
             pokeBack.style.backgroundColor = '#9400D3'
-            break	
+            break
         case 'fairy':
             pokeBack.style.backgroundColor = '#FF00FF'
-            break	
+            break
         case 'flying':
             pokeBack.style.backgroundColor = '#99FFFF'
-            break	
+            break
         case 'poison':
             pokeBack.style.backgroundColor = '#9370DB'
-            break	
+            break
         case 'normal':
             pokeBack.style.backgroundColor = '#CCFFCC'
-            break	
+            break
         case 'ghost':
             pokeBack.style.backgroundColor = '#F8F7ED'
-            break	
+            break
         case 'dragon':
             pokeBack.style.backgroundColor = '#FF6347'
-            break	
+            break
         case 'grass':
             pokeBack.style.backgroundColor = '#008000'
-            break	
+            break
         case 'steel':
             pokeBack.style.backgroundColor = '#C0C0C0'
             break
@@ -252,24 +255,24 @@ async function pokeGET(pokeSearch) {
     const Special_Defense = pokeAPI['data']['stats'][1]['base_stat']
     const Special_Attack = pokeAPI['data']['stats'][2]['base_stat']
     const Defense = pokeAPI['data']['stats'][3]['base_stat']
-    const Attack =  pokeAPI['data']['stats'][4]['base_stat']
-    const HP =  pokeAPI['data']['stats'][5]['base_stat']
+    const Attack = pokeAPI['data']['stats'][4]['base_stat']
+    const HP = pokeAPI['data']['stats'][5]['base_stat']
 
     // ToDo stat int to bar
 
     // SLIDE 3
     const moves = new Array()
-    for(let x = 0; x < 6; x++) {
-        moves.push(pokeAPI['data']['moves'][x]['move']['name']) 
+    for (let x = 0; x < 6; x++) {
+        moves.push(pokeAPI['data']['moves'][x]['move']['name'])
     }
 
     // SLIDE 4
     const stage1NAME = evolutionAPI['data']['chain']['species']['name']
     const stage1IMG = stage1['data']['sprites']['front_default']
-    
+
     const stage2NAME = evolutionAPI['data']['chain']['evolves_to'][0]['species']['name']
     const stage2IMG = stage2['data']['sprites']['front_default']
-    
+
     const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
     const stage3IMG = stage3['data']['sprites']['front_default']
 
@@ -280,9 +283,51 @@ function reset() {
     type.src = "./img/null.png"
     input.value = ''
 }
+// Slideshow //
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+// slideshow
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+}
+
+
+// NEXT and PREV SLIDE
+document.addEventListener("keydown", function(event) {
+    if(event.keyCode == 39){
+        plusSlides(1)
+    } else if(event.keyCode == 37) {
+        plusSlides(-1)
+    }
+})
+
 
 // SEARCH BUTTON
-button[0].addEventListener('click', function() {
+button[0].addEventListener('click', function () {
     pokeSearch = input.value.toLowerCase()
 
     input.placeholder = 'Pokémon name or id' // Reset after mistake
@@ -300,8 +345,6 @@ document.addEventListener('keydown', function(event) {
     }
 })
 
-
-
 // NEXT and PREVIOUS BUTTONS
 button[2].addEventListener("click", function() {
     pokeGET(id - 1)
@@ -311,13 +354,13 @@ button[3].addEventListener("click", function() {
     pokeGET(id + 1)
 })
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (event.keyCode == 38) {
         pokeGET(id - 1)
     }
 })
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (event.keyCode == 40) {
         pokeGET(id + 1)
     }
