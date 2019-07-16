@@ -94,6 +94,7 @@ const button = document.getElementsByTagName("button");
 const pokeBack = document.getElementById("display");
 
 const type = document.getElementById("type");
+const subType = document.getElementById("subType");
 
 function capitalize(s) {
   if (typeof s !== "string") return "";
@@ -301,6 +302,83 @@ async function pokeGET(pokeSearch) {
   const weight = pokeAPI["data"]["weight"];
 
   size.innerHTML = `H:${height} W:${weight}`;
+
+  // TYPE BUTTONS
+  let pokeSubType;
+
+  const baseHappiness = speciesAPI["data"]["base_happiness"];
+  const baseEXP = pokeAPI["data"]["base_experience"];
+
+  pokeSubType = "default";
+  if (weight < 100) pokeSubType = "light";
+  if (baseEXP > 100) pokeSubType = "clever";
+  if (baseHappiness > 70) pokeSubType = "cute";
+  if (specialAttack > 90) pokeSubType = "cool";
+  if (attack > 75) pokeSubType = "boom";
+  if (speed > 100) pokeSubType = "shadow";
+  if (defense > 80) pokeSubType = "tough";
+
+  type.src = `./img/type/${pokeType}.png`;
+  subType.src = `./img/subType/${pokeSubType}.png`;
+
+  switch (pokeType) {
+    case "dark":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "psychic":
+      pokeBack.style.backgroundColor = "#800080";
+      break;
+    case "fighting":
+      pokeBack.style.backgroundColor = "#F5F5DC";
+      break;
+    case "ground":
+      pokeBack.style.backgroundColor = "#A52A2A";
+      break;
+    case "electric":
+      pokeBack.style.backgroundColor = "#FFFF66";
+      break;
+    case "bug":
+      pokeBack.style.backgroundColor = "#228B22";
+      break;
+    case "fire":
+      pokeBack.style.backgroundColor = "#E86100";
+      break;
+    case "ice":
+      pokeBack.style.backgroundColor = "#ADD8E6";
+      break;
+    case "water":
+      pokeBack.style.backgroundColor = "#3399FF";
+      break;
+    case "rock":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "fairy":
+      pokeBack.style.backgroundColor = "#FF00FF";
+      break;
+    case "flying":
+      pokeBack.style.backgroundColor = "#99FFFF";
+      break;
+    case "poison":
+      pokeBack.style.backgroundColor = "#9370DB";
+      break;
+    case "normal":
+      pokeBack.style.backgroundColor = "#CCFFCC";
+      break;
+    case "ghost":
+      pokeBack.style.backgroundColor = "#F8F7ED";
+      break;
+    case "dragon":
+      pokeBack.style.backgroundColor = "#FF6347";
+      break;
+    case "grass":
+      pokeBack.style.backgroundColor = "#008000";
+      break;
+    case "steel":
+      pokeBack.style.backgroundColor = "#C0C0C0";
+      break;
+    default:
+      console.log("TYPE NOT FOUND!");
+  }
 }
 
 function reset() {
