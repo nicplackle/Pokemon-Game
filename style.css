@@ -47,6 +47,28 @@ body {
   max-width: 30%;
 }
 
+#prev {
+  top: 73.5%;
+  left: 33.3%;
+
+  position: absolute;
+}
+
+#next {
+  top: 83.3%;
+  left: 33.3%;
+
+  position: absolute;
+}
+
+#next:hover {
+  background: green;
+}
+
+#prev:hover {
+  background: red;
+}
+
 /* removes border from input box */
 input:focus {
   outline: none;

@@ -102,12 +102,11 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-async function pokeGET() {
+var pokeSearch
+var id, ID
+
+async function pokeGET(pokeSearch) {
     //  --    GENERAL   --  //
-    const pokeSearch = input.value.toLowerCase()
-
-    input.placeholder = 'Pokémon name or id' // Reset after mistake
-
     var pokeAPI
     try {
         pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
@@ -167,9 +166,9 @@ async function pokeGET() {
 
     const name = pokeAPI['data']['name']
 
-    let ID = pokeAPI['data']['id']
-    if(parseInt(ID) >= 10 && parseInt(ID) < 100)  ID = '0' + ID
-    if(parseInt(ID) < 10) ID = '00' + ID
+    id = pokeAPI['data']['id']
+    if(parseInt(id) >= 10 && parseInt(id) < 100)  ID = '0' + id
+    if(parseInt(id) < 10) ID = '00' + id
  
     sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
 
@@ -276,4 +275,34 @@ async function pokeGET() {
 
 }
 
-button[0].addEventListener('click', function() {pokeGET()})
+// SEARCH BUTTON
+button[0].addEventListener('click', function() {
+    pokeSearch = input.value.toLowerCase()
+
+    input.placeholder = 'Pokémon name or id' // Reset after mistake
+
+    pokeGET(pokeSearch)
+})
+
+
+
+// NEXT and PREVIOUS BUTTONS
+button[1].addEventListener("click", function() {
+    pokeGET(id - 1)
+})
+
+button[2].addEventListener("click", function() {
+    pokeGET(id + 1)
+})
+
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 38) {
+        pokeGET(id - 1)
+    }
+})
+
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 40) {
+        pokeGET(id + 1)
+    }
+})
