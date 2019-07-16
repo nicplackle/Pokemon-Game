@@ -111,15 +111,9 @@ function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-<<<<<<< HEAD
-var pokeSearch, sound;
-var id, ID;
-var displayName, displayID, displayImage, displayText;
-=======
 var pokeSearch, sound
 var id, ID
 var displayName, displayID, displayImage, displayText, displaySpeed, displayAttack, displayDefense, displayHP, displaySpecialAttack, displaySpecialDefense
->>>>>>> d3e7c841bfe10602f6671d7e67d489cacbcd66f9
 
 async function pokeGET(pokeSearch) {
   //  --    GENERAL   --  //
