@@ -96,43 +96,54 @@ const pokeBack = document.getElementById("display");
 const type = document.getElementById("type");
 const subType = document.getElementById("subType");
 
-const yellowLight = document.getElementById('yellowlight')
-const redLight = document.getElementById('redlight')
+const yellowLight = document.getElementById("yellowlight");
+const redLight = document.getElementById("redlight");
 
-const hpText = document.getElementById('hp-text')
-const attackText = document.getElementById('attack-text') 
-const defenseText = document.getElementById('defense-text') 
-const speedText = document.getElementById('speed-text') 
-const specialAttackText = document.getElementById('specialAttack-text') 
-const specialDefenseText = document.getElementById('specialDefense-text')  
+const hpText = document.getElementById("hp-text");
+const attackText = document.getElementById("attack-text");
+const defenseText = document.getElementById("defense-text");
+const speedText = document.getElementById("speed-text");
+const specialAttackText = document.getElementById("specialAttack-text");
+const specialDefenseText = document.getElementById("specialDefense-text");
 
 function capitalize(s) {
   if (typeof s !== "string") return "";
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-var pokeSearch, sound
-var id, ID
-var displayName, displayID, displayImage, displayText, displaySpeed, displayAttack, displayDefense, displayHP, displaySpecialAttack, displaySpecialDefense
+var pokeSearch, sound;
+var id, ID;
+var displayName,
+  displayID,
+  displayImage,
+  displayText,
+  displaySpeed,
+  displayAttack,
+  displayDefense,
+  displayHP,
+  displaySpecialAttack,
+  displaySpecialDefense;
 
 async function pokeGET(pokeSearch) {
   //  --    GENERAL   --  //
   var pokeAPI;
   try {
-    pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
-    redLight.classList.remove('none')
-    yellowLight.classList.add('none')
+    pokeAPI = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`
+    );
+    redLight.classList.remove("none");
+    yellowLight.classList.add("none");
 
-    hpText.classList.remove('none')
-    attackText.classList.remove('none')
-    defenseText.classList.remove('none')
-    speedText.classList.remove('none')
-    specialAttackText.classList.remove('none')
-    specialDefenseText.classList.remove('none')
+    hpText.classList.remove("none");
+    attackText.classList.remove("none");
+    defenseText.classList.remove("none");
+    speedText.classList.remove("none");
+    specialAttackText.classList.remove("none");
+    specialDefenseText.classList.remove("none");
   } catch (TypeError) {
     input.value = "";
     input.placeholder = "POKE NOT FOUND!";
-    yellowLight.classList.remove('none')
+    yellowLight.classList.remove("none");
   }
 
   //console.log(pokeAPI['data'])
@@ -281,117 +292,117 @@ async function pokeGET(pokeSearch) {
     const stage3IMG = stage3['data']['sprites']['front_default']
     */
 
-    // size 
-    const size = document.getElementById('size')
+  // size
+  const size = document.getElementById("size");
 
-    const height = pokeAPI['data']['height']
-    const weight = pokeAPI['data']['weight']
+  const height = pokeAPI["data"]["height"];
+  const weight = pokeAPI["data"]["weight"];
 
-    size.innerHTML = `H:${height} W:${weight}`
+  size.innerHTML = `H:${height} W:${weight}`;
 
-    // TYPE BUTTONS
-    let pokeSubType
+  // TYPE BUTTONS
+  let pokeSubType;
 
-    const baseHappiness = speciesAPI['data']['base_happiness']
-    const baseEXP = pokeAPI['data']['base_experience']
+  const baseHappiness = speciesAPI["data"]["base_happiness"];
+  const baseEXP = pokeAPI["data"]["base_experience"];
 
-    pokeSubType = "default"
-    if (weight < 100) pokeSubType = "light"
-    if (baseEXP > 100) pokeSubType = "clever"
-    if (baseHappiness > 70) pokeSubType = "cute" 
-    if (Special_Attack > 90) pokeSubType = "cool"
-    if (attack > 75) pokeSubType = "boom"
-    if (Speed > 100) pokeSubType = "shadow"
-    if (defense > 80) pokeSubType = "tough"
+  pokeSubType = "default";
+  if (weight < 100) pokeSubType = "light";
+  if (baseEXP > 100) pokeSubType = "clever";
+  if (baseHappiness > 70) pokeSubType = "cute";
+  if (Special_Attack > 90) pokeSubType = "cool";
+  if (attack > 75) pokeSubType = "boom";
+  if (Speed > 100) pokeSubType = "shadow";
+  if (defense > 80) pokeSubType = "tough";
 
-    type.src = `./img/type/${pokeType}.png`
-    subType.src = `./img/subType/${pokeSubType}.png`
- 
-    switch (pokeType) {
-        case 'dark':
-            pokeBack.style.backgroundColor = '#9400D3'
-            break
-        case 'psychic':
-            pokeBack.style.backgroundColor = '#800080'
-            break
-        case 'fighting':
-            pokeBack.style.backgroundColor = '#F5F5DC'
-            break
-        case 'ground':
-            pokeBack.style.backgroundColor = '#A52A2A'
-            break
-        case 'electric':
-            pokeBack.style.backgroundColor = '#FFFF66'
-            break
-        case 'bug':
-            pokeBack.style.backgroundColor = '#228B22'
-            break
-        case 'fire':
-            pokeBack.style.backgroundColor = '#E86100'
-            break
-        case 'ice':
-            pokeBack.style.backgroundColor = '#ADD8E6'
-            break
-        case 'water':
-            pokeBack.style.backgroundColor = '#3399FF'
-            break
-        case 'rock':
-            pokeBack.style.backgroundColor = '#9400D3'
-            break
-        case 'fairy':
-            pokeBack.style.backgroundColor = '#FF00FF'
-            break
-        case 'flying':
-            pokeBack.style.backgroundColor = '#99FFFF'
-            break
-        case 'poison':
-            pokeBack.style.backgroundColor = '#9370DB'
-            break
-        case 'normal':
-            pokeBack.style.backgroundColor = '#CCFFCC'
-            break
-        case 'ghost':
-            pokeBack.style.backgroundColor = '#F8F7ED'
-            break
-        case 'dragon':
-            pokeBack.style.backgroundColor = '#FF6347'
-            break
-        case 'grass':
-            pokeBack.style.backgroundColor = '#008000'
-            break
-        case 'steel':
-            pokeBack.style.backgroundColor = '#C0C0C0'
-            break
-        default:
-            console.log('TYPE NOT FOUND!')
-    }
+  type.src = `./img/type/${pokeType}.png`;
+  subType.src = `./img/subType/${pokeSubType}.png`;
+
+  switch (pokeType) {
+    case "dark":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "psychic":
+      pokeBack.style.backgroundColor = "#800080";
+      break;
+    case "fighting":
+      pokeBack.style.backgroundColor = "#F5F5DC";
+      break;
+    case "ground":
+      pokeBack.style.backgroundColor = "#A52A2A";
+      break;
+    case "electric":
+      pokeBack.style.backgroundColor = "#FFFF66";
+      break;
+    case "bug":
+      pokeBack.style.backgroundColor = "#228B22";
+      break;
+    case "fire":
+      pokeBack.style.backgroundColor = "#E86100";
+      break;
+    case "ice":
+      pokeBack.style.backgroundColor = "#ADD8E6";
+      break;
+    case "water":
+      pokeBack.style.backgroundColor = "#3399FF";
+      break;
+    case "rock":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "fairy":
+      pokeBack.style.backgroundColor = "#FF00FF";
+      break;
+    case "flying":
+      pokeBack.style.backgroundColor = "#99FFFF";
+      break;
+    case "poison":
+      pokeBack.style.backgroundColor = "#9370DB";
+      break;
+    case "normal":
+      pokeBack.style.backgroundColor = "#CCFFCC";
+      break;
+    case "ghost":
+      pokeBack.style.backgroundColor = "#F8F7ED";
+      break;
+    case "dragon":
+      pokeBack.style.backgroundColor = "#FF6347";
+      break;
+    case "grass":
+      pokeBack.style.backgroundColor = "#008000";
+      break;
+    case "steel":
+      pokeBack.style.backgroundColor = "#C0C0C0";
+      break;
+    default:
+      console.log("TYPE NOT FOUND!");
+  }
 }
 
 function reset() {
-    pokeBack.style.backgroundColor = 'rgb(44, 45, 54)'    
-    type.src = "./img/null.png"
-    subType.src = "./img/null.png"
-    input.value = ''
-    displayID.innerHTML = ''
-    displayImage.src = './img/trans.png'
-    displayName.innerHTML = ''
-    displayText.innerHTML = ''
-    displayAttack.innerHTML = ''
-    displayDefense.innerHTML = ''
-    displaySpecialAttack.innerHTML = ''
-    displaySpecialDefense.innerHTML = ''
-    displayAttack.innerHTML = ''
-    displayDefense.innerHTML = ''
-    displayHP.innerHTML = ''
-    displaySpeed.innerHTML = ''
-    redLight.classList.add('none')
-    yellowLight.classList.add('none')
-    hpText.classList.add('none')
-    attackText.classList.add('none')
-    defenseText.classList.add('none')
-    speedText.classList.add('none')
-    specialAttackText.classList.add('none')
-    specialDefenseText.classList.add('none')
+  pokeBack.style.backgroundColor = "rgb(44, 45, 54)";
+  type.src = "./img/null.png";
+  subType.src = "./img/null.png";
+  input.value = "";
+  displayID.innerHTML = "";
+  displayImage.src = "./img/trans.png";
+  displayName.innerHTML = "";
+  displayText.innerHTML = "";
+  displayAttack.innerHTML = "";
+  displayDefense.innerHTML = "";
+  displaySpecialAttack.innerHTML = "";
+  displaySpecialDefense.innerHTML = "";
+  displayAttack.innerHTML = "";
+  displayDefense.innerHTML = "";
+  displayHP.innerHTML = "";
+  displaySpeed.innerHTML = "";
+  redLight.classList.add("none");
+  yellowLight.classList.add("none");
+  hpText.classList.add("none");
+  attackText.classList.add("none");
+  defenseText.classList.add("none");
+  speedText.classList.add("none");
+  specialAttackText.classList.add("none");
+  specialDefenseText.classList.add("none");
 }
 // Slideshow //
 
