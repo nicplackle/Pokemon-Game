@@ -93,7 +93,7 @@ async function pokeGET() {
 
     // --     SPECIES   --  //
     const speciesURL = pokeAPI['data']['species']['url']
-    const speciesAPI = await axios.get(speciesURL) 
+    const speciesAPI = await axios.get(speciesURL)
 
     //console.log(speciesAPI['data'])
 
@@ -102,7 +102,7 @@ async function pokeGET() {
     const flavorList = speciesAPI['data']['flavor_text_entries']
     const flavorListEN = new Array()
 
-    for(let i = 0; i < flavorList.length; i++){
+    for (let i = 0; i < flavorList.length; i++) {
         if (flavorList[i]['language']['name'] == 'en') flavorListEN.push(flavorList[i]['flavor_text'])
     }
 
@@ -129,4 +129,43 @@ async function pokeGET() {
 
 }
 
-button[0].addEventListener('click', async function(e) {pokeGET()})
+button[0].addEventListener('click', async function (e) {
+    pokeGET()
+})
+
+// Slideshow //
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+// slideshow
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
