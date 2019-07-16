@@ -105,6 +105,7 @@ function capitalize(s) {
 
 var pokeSearch, sound
 var id, ID
+var displayName, displayID, displayImage, displayText
 
 async function pokeGET(pokeSearch) {
     //  --    GENERAL   --  //
@@ -202,16 +203,16 @@ async function pokeGET(pokeSearch) {
     const pokeText =
         flavorListEN[Math.floor(Math.random() * flavorListEN.length)];
 
-    const displayName = document.getElementById("name");
+    displayName = document.getElementById("name");
     displayName.innerHTML = `${pokeName}`;
 
-    const displayID = document.getElementById("id");
+    displayID = document.getElementById("id");
     displayID.innerHTML = `${pokeID}`;
 
-    const displayImage = document.getElementById("image");
+    displayImage = document.getElementById("image");
     displayImage.src = `${pokeImage}`;
 
-    const displayText = document.getElementById("poke-text");
+    displayText = document.getElementById("poke-text");
     displayText.innerHTML = `${pokeText}`;
 
 
@@ -338,7 +339,12 @@ async function pokeGET(pokeSearch) {
 function reset() {
     pokeBack.style.backgroundColor = 'rgb(44, 45, 54)'    
     type.src = "./img/null.png"
+    subType.src = "./img/null.png"
     input.value = ''
+    displayID.innerHTML = ''
+    displayImage.src = './img/trans.png'
+    displayName.innerHTML = ''
+    displayText.innerHTML = ''
 }
 // Slideshow //
 
