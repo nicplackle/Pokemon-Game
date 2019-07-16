@@ -17,7 +17,6 @@ body {
   position: relative;
 }
 
-
 /* flashing blue light */
 .bluelight {
   position: absolute;
@@ -444,6 +443,88 @@ button:focus {
 
   top: 70%;
   left: 10%;
+
+  position: absolute;
+}
+
+/* SLIDE 3 */
+
+#moveOne-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 15%;
+  left: 5%;
+
+  position: absolute;
+}
+
+#moveTwo-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 35%;
+  left: 5%;
+
+  position: absolute;
+}
+
+#moveThree-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 55%;
+  left: 5%;
+
+  position: absolute;
+}
+
+#moveFour-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 75%;
+  left: 5%;
+
+  position: absolute;
+}
+
+#moveOne {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 15%;
+  left: 50%;
+
+  position: absolute;
+}
+
+#moveTwo {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 35%;
+  left: 50%;
+
+  position: absolute;
+}
+
+#moveThree {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 55%;
+  left: 50%;
+
+  position: absolute;
+}
+
+#moveFour {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 75%;
+  left: 50%;
 
   position: absolute;
 }
