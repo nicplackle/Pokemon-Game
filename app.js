@@ -176,6 +176,8 @@ async function pokeGET(pokeSearch) {
     const name = pokeAPI["data"]["name"];
 
     id = pokeAPI["data"]["id"];
+
+    ID = id
     if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id;
     if (parseInt(id) < 10) ID = "00" + id;
 
