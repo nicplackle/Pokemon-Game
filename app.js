@@ -186,7 +186,7 @@ async function pokeGET(pokeSearch) {
     const pokeText = flavorListEN[Math.floor(Math.random() * flavorListEN.length)]
 
     const displayName = document.getElementById('name')
-    displayName.innerHTML = pokeName
+    displayName.innerHTML = `${pokeName}`
 
     type.src = `./img/type/${pokeType}.png`
 

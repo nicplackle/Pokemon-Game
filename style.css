@@ -242,3 +242,13 @@ button:focus {
 
   font-family: "Press Start 2P", cursive; 
 }
+
+#name {
+  font-family: "Press Start 2P", cursive; 
+  font-size: 12pt;
+
+  top: 14%;
+  left: 13%;
+
+  position: absolute;
+}
