@@ -98,6 +98,9 @@ const pokeBack = document.getElementById('display')
 const type = document.getElementById('type')
 const subType = document.getElementById('subType')
 
+const yellowLight = document.getElementById('yellowlight')
+const redLight = document.getElementById('redlight')
+
 function capitalize(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
@@ -112,9 +115,13 @@ async function pokeGET(pokeSearch) {
     var pokeAPI
     try {
         pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
+        yellowLight.classList.add('none')
+        redLight.classList.remove('none')
     } catch (TypeError) {
         input.value = ''
         input.placeholder = 'POKE NOT FOUND!'
+
+        yellowLight.classList.remove('none')
     }
 
     console.log(pokeAPI['data'])
@@ -345,6 +352,7 @@ function reset() {
     displayImage.src = './img/trans.png'
     displayName.innerHTML = ''
     displayText.innerHTML = ''
+    redLight.classList.add('none')
 }
 // Slideshow //
 
