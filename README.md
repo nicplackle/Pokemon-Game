@@ -1,6 +1,6 @@
 # Pokemon-Game
 
-![Pokédex](https://gfycat.com/weaksparsedromedary/)
+![Pokédex](https://gfycat.com/weaksparsedromedary.gif)
 
 ## Mission
 
