@@ -116,7 +116,7 @@ async function pokeGET(pokeSearch) {
         input.placeholder = 'POKE NOT FOUND!'
     }
 
-    //console.log(pokeAPI['data'])
+    console.log(pokeAPI)
 
 
     // --     SPECIES   --  //
