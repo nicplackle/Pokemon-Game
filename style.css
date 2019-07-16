@@ -45,6 +45,65 @@ body {
   }
 }
 
+.none {
+  display: none;
+}
+
+#yellowlight {
+  position: absolute;
+  border-radius: 50%;
+  height: 33px;
+  width: 33px;
+  top: 66.4%;
+  left: 89.3%;
+  margin: 0;
+  background: radial-gradient(circle at 90px 90px, #aeccec, rgb(175, 220, 230));
+  -webkit-animation: yellowlight 0.2s ease-in-out infinite alternate;
+  -moz-animation: yellowlight 0.2s ease-in-out infinite alternate;
+  animation: yellowlight 0.2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes yellowlight {
+  from {
+    box-shadow: 0 0 10px rgb(202, 173, 8), 0 0 20px rgb(219, 200, 26),
+      0 0 30px #caab22, 0 0 40px #e6a100, 0 0 50px #a8990c, 0 0 60px #d1a209;
+      opacity: 0;
+  }
+
+  to {
+    box-shadow: 0 0 20px rgb(167, 137, 6), 0 0 30px #d1a30d, 0 0 40px hsl(44, 90%, 53%),
+      0 0 50px #fffb0d, 0 0 60px #f5f50b, 0 0 70px #f5f376;
+      opacity: 1;
+  }
+}
+
+#redlight {
+  position: absolute;
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  top: 63%;
+  left: 13.3%;
+  margin: 0;
+  opacity: 1;
+  background: radial-gradient(circle at 90px 90px, #ff2323, rgb(240, 47, 47));
+  -webkit-animation: redlight 0.2s ease-in-out infinite alternate;
+  -moz-animation: redlight 0.2s ease-in-out infinite alternate;
+  animation: redlight 0.2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes redlight {
+  from {
+    box-shadow: 0 0 10px rgb(202, 8, 8), 0 0 20px rgb(219, 26, 26),
+      0 0 20px #ca2222, 0 0 25px #e60000, 0 0 30px #a80c0c, 0 0 35px #d10909;
+  }
+
+  to {
+    box-shadow: 0 0 10px rgb(167, 6, 6), 0 0 20px #d10d0d, 0 0 25px hsl(0, 90%, 53%),
+      0 0 30px #ff0d0d, 0 0 35px #f50b0b, 0 0 40px #f57676;
+  }
+}
+
 /* end flashing blue light */
 
 #display {
