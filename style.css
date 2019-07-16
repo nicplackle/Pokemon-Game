@@ -286,3 +286,125 @@ button:focus {
 
   position: absolute;
 }
+
+/* SLIDE 2 */
+
+#hp {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 20%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#attack {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 30%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#defense {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 40%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#speed {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 50%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#special-attack {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 60%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#special-defense {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 70%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#hp-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 20%;
+  left: 10%;
+
+  position: absolute;
+}
+
+#attack-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 30%;
+  left: 10%;
+
+  position: absolute;
+}
+
+#defense-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 40%;
+  left: 10%;
+
+  position: absolute;
+}
+
+#speed-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 50%;
+  left: 10%;
+
+  position: absolute;
+}
+
+#specialAttack-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 60%;
+  left: 10%;
+
+  position: absolute;
+}
+
+#specialDefense-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 70%;
+  left: 10%;
+
+  position: absolute;
+}

@@ -271,8 +271,22 @@ async function pokeGET(pokeSearch) {
   const HP = pokeAPI["data"]["stats"][5]["base_stat"];
 
   const displaySpeed = document.getElementById("speed");
-
   displaySpeed.innerHTML = `${Speed}`;
+
+  const displaySpecialDefense = document.getElementById("special-defense");
+  displaySpecialDefense.innerHTML = `${Special_Defense}`;
+
+  const displaySpecialAttack = document.getElementById("special-attack");
+  displaySpecialAttack.innerHTML = `${Special_Attack}`;
+
+  const displayDefense = document.getElementById("defense");
+  displayDefense.innerHTML = `${Defense}`;
+
+  const displayAttack = document.getElementById("attack");
+  displayAttack.innerHTML = `${Attack}`;
+
+  const displayHP = document.getElementById("hp");
+  displayHP.innerHTML = `${HP}`;
 
   // ToDo stat int to bar
 
