@@ -199,17 +199,24 @@ async function pokeGET(pokeSearch) {
   }
 
   // --     SOUNDS    --  //
-  sound = document.getElementById("sound");
+  sound = document.getElementById("sound")
 
-  const name = pokeAPI["data"]["name"];
+  const name = pokeAPI["data"]["name"]
 
-  id = pokeAPI["data"]["id"];
+  id = pokeAPI["data"]["id"]
 
   ID = id
-  if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id;
-  if (parseInt(id) < 10) ID = "00" + id;
+  if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id
+  if (parseInt(id) < 10) ID = "00" + id
 
-  sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`;
+  randomInt = Math.floor(Math.random() * 97)
+  if (randomInt < 10) randomInt = '0' + randomInt
+
+  if (name == 'pikachu') {
+    sound.src = `./sounds/${ID} - ${capitalize(name)} (${randomInt}).wav`
+  } else {
+    sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
+  }
 
   console.log(sound);
 
