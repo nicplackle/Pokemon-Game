@@ -248,15 +248,41 @@ button:focus {
   display: flex;
   flex-direction: row;
 
-  font-family: "Press Start 2P", cursive; 
+  font-family: "Press Start 2P", cursive;
 }
 
+/* SLIDE 1 */
+
 #name {
-  font-family: "Press Start 2P", cursive; 
+  font-family: "Press Start 2P", cursive;
   font-size: 12pt;
 
   top: 14%;
-  left: 13%;
+  left: 35%;
+
+  position: absolute;
+}
+
+#id {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12pt;
+
+  top: 14%;
+  left: 80%;
+
+  position: absolute;
+}
+
+#image {
+  top: 30%;
+  left: 35%;
+
+  position: absolute;
+}
+
+#poke-text {
+  top: 75%;
+  left: 3%;
 
   position: absolute;
 }

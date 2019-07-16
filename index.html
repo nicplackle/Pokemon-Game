@@ -13,64 +13,59 @@
 <body>
     <div id="pokedexbackground">
 
-      <img src="./img/pokedexbackground.png" width=1024 height=724 />
-      <input type="text" placeholder="Pokémon name or id" id="searchbar" />
-      <button>search</button>
-      <button id=reset>reset</button>
+        <img src="./img/pokedexbackground.png" width=1024 height=724 />
+        <input type="text" placeholder="Pokémon name or id" id="searchbar" />
+        <button>search</button>
+        <button id=reset>reset</button>
 
-      <div id="display">
-        <!-- Slideshow container -->
+        <div id="display">
+            <!-- Slideshow container -->
 
-        <div class="slideshow-container">
+            <div class="slideshow-container">
 
-            <!-- Full-width images with number and caption text -->
-            <div class="mySlides fade one">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade one">
 
-                <div id="name"></div>
-                <!--
-                    <div class="id-number"> ... </div>
-                    <img src="img/Bulbasaur.jpg" style="width:100%">
-                    <div class="text">Caption Text</div>
-                    -->
+                    <div id="name"></div>
+                    <div id="id"></div>
+                    <img id="image">
+                    <div id="poke-text"></div>
 
-            </div>
 
-            <div class="mySlides fade two">
-                2
-                <!--
-                    <div class="id-number"> ...</div>
-                    <img src="img/Charmander.jpg" style="width:100%">
-                    <div class="text">Caption Two</div>
-                    -->
+                </div>
 
-            </div>
+                <div class="mySlides fade two">
+                    2
 
-            <div class="mySlides fade three">
-                3
-                <!--
+
+                </div>
+
+                <div class="mySlides fade three">
+                    3
+                    <!--
                     <div class="id-number"> ... </div>
                     <img src="img/Squirtle.jpg" style="width:100%">
                     <div class="text">Caption Three</div>
                     -->
 
 
+                </div>
             </div>
         </div>
-      </div>
 
-      <audio id="sound" src="" autoplay></audio>
+        <audio id="sound" src="" autoplay></audio>
 
-      <img id="type" src="./img/null.png" />
-      <img id="subType" src="./img/null.png" />
+        <img id="type" src="./img/null.png" />
+        <img id="subType" src="./img/null.png" />
 
-      <button id="prev">▲</button>
-      <button id="next">▼</button>
-      <button class="btn-left btn-slides" onclick="plusSlides(-1)">◀</button>
-      <button class="btn-right btn-slides" onclick="plusSlides(1)">▶</button>
+        <button id="prev">▲</button>
+        <button id="next">▼</button>
+        <button class="btn-left btn-slides" onclick="plusSlides(-1)">◀</button>
+        <button class="btn-right btn-slides" onclick="plusSlides(1)">▶</button>
 
 
-      <button id=playSound>&#128266;</button>
-      <div id="size"></div>
+        <button id=playSound>&#128266;</button>
+        <div id="size"></div>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
