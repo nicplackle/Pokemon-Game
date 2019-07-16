@@ -96,6 +96,7 @@ const button = document.getElementsByTagName('button')
 const pokeBack = document.getElementById('display')
 
 const type = document.getElementById('type')
+const subType = document.getElementById('subType')
 
 function capitalize(s) {
     if (typeof s !== 'string') return ''
@@ -167,10 +168,18 @@ async function pokeGET(pokeSearch) {
     const name = pokeAPI['data']['name']
 
     id = pokeAPI['data']['id']
+    ID = id
     if (parseInt(id) >= 10 && parseInt(id) < 100) ID = '0' + id
     if (parseInt(id) < 10) ID = '00' + id
 
-    sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
+    let randomInt = Math.floor(Math.random() * 97)
+    if (randomInt < 10) randomInt = '0' + randomInt
+
+    if (name == 'pikachu') {
+        sound.src = `./sounds/${ID} - ${capitalize(name)} (${randomInt}).wav`
+    } else {
+        sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
+    }
 
     console.log(sound)
 
@@ -188,8 +197,63 @@ async function pokeGET(pokeSearch) {
     const displayName = document.getElementById('name')
     displayName.innerHTML = `${pokeName}`
 
-    type.src = `./img/type/${pokeType}.png`
+    // SLIDE 2
+    const speed = pokeAPI['data']['stats'][0]['base_stat']
+    const specialDefense = pokeAPI['data']['stats'][1]['base_stat']
+    const specialAttack = pokeAPI['data']['stats'][2]['base_stat']
+    const defense = pokeAPI['data']['stats'][3]['base_stat']
+    const attack = pokeAPI['data']['stats'][4]['base_stat']
+    
+    const HP = pokeAPI['data']['stats'][5]['base_stat']
 
+    // ToDo stat int to bar
+
+    // SLIDE 3
+    const moves = new Array()
+    for (let x = 0; x < 6; x++) {
+        moves.push(pokeAPI['data']['moves'][x]['move']['name'])
+    }
+
+    // SLIDE 4
+
+    /*
+    const stage1NAME = evolutionAPI['data']['chain']['species']['name']
+    const stage1IMG = stage1['data']['sprites']['front_default']
+
+    const stage2NAME = evolutionAPI['data']['chain']['evolves_to'][0]['species']['name']
+    const stage2IMG = stage2['data']['sprites']['front_default']
+
+    const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
+    const stage3IMG = stage3['data']['sprites']['front_default']
+    */
+
+    // size 
+    const size = document.getElementById('size')
+
+    const height = pokeAPI['data']['height']
+    const weight = pokeAPI['data']['weight']
+
+    size.innerHTML = `H:${height} W:${weight}`
+
+    // TYPE BUTTONS
+    let pokeSubType
+
+    const baseHappiness = speciesAPI['data']['base_happiness']
+    const baseEXP = pokeAPI['data']['base_experience']
+
+    pokeSubType = "default"
+    if (weight < 100) pokeSubType = "light"
+    if (baseEXP > 100) pokeSubType = "clever"
+    if (baseHappiness > 70) pokeSubType = "cute" 
+    if (specialAttack > 90) pokeSubType = "cool"
+    if (attack > 75) pokeSubType = "boom"
+    if (speed > 100) pokeSubType = "shadow"
+    if (defense > 80) pokeSubType = "tough"
+    
+
+    type.src = `./img/type/${pokeType}.png`
+    subType.src = `./img/subType/${pokeSubType}.png`
+ 
     switch (pokeType) {
         case 'dark':
             pokeBack.style.backgroundColor = '#9400D3'
@@ -248,44 +312,6 @@ async function pokeGET(pokeSearch) {
         default:
             console.log('TYPE NOT FOUND!')
     }
-
-
-    // SLIDE 2
-    const Speed = pokeAPI['data']['stats'][0]['base_stat']
-    const Special_Defense = pokeAPI['data']['stats'][1]['base_stat']
-    const Special_Attack = pokeAPI['data']['stats'][2]['base_stat']
-    const Defense = pokeAPI['data']['stats'][3]['base_stat']
-    const Attack = pokeAPI['data']['stats'][4]['base_stat']
-    const HP = pokeAPI['data']['stats'][5]['base_stat']
-
-    // ToDo stat int to bar
-
-    // SLIDE 3
-    const moves = new Array()
-    for (let x = 0; x < 6; x++) {
-        moves.push(pokeAPI['data']['moves'][x]['move']['name'])
-    }
-
-    // SLIDE 4
-
-    /*
-    const stage1NAME = evolutionAPI['data']['chain']['species']['name']
-    const stage1IMG = stage1['data']['sprites']['front_default']
-
-    const stage2NAME = evolutionAPI['data']['chain']['evolves_to'][0]['species']['name']
-    const stage2IMG = stage2['data']['sprites']['front_default']
-
-    const stage3NAME = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']
-    const stage3IMG = stage3['data']['sprites']['front_default']
-    */
-
-    // size 
-    const size = document.getElementById('size')
-
-    const height = pokeAPI['data']['height']
-    const weight = pokeAPI['data']['weight']
-
-    size.innerHTML = `H:${height} W:${weight}`
 }
 
 function reset() {
