@@ -105,118 +105,186 @@ var pokeSearch, sound;
 var id, ID;
 
 async function pokeGET(pokeSearch) {
-    //  --    GENERAL   --  //
-    var pokeAPI
-    try {
-        pokeAPI = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`)
-    } catch (TypeError) {
-        input.value = ''
-        input.placeholder = 'POKE NOT FOUND!'
-    }
+  //  --    GENERAL   --  //
+  var pokeAPI;
+  try {
+    pokeAPI = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`
+    );
+  } catch (TypeError) {
+    input.value = "";
+    input.placeholder = "POKE NOT FOUND!";
+  }
 
-    console.log(pokeAPI)
+  //console.log(pokeAPI['data'])
 
+  // --     SPECIES   --  //
+  const speciesURL = pokeAPI["data"]["species"]["url"];
+  const speciesAPI = await axios.get(speciesURL);
 
-    // --     SPECIES   --  //
-    const speciesURL = pokeAPI['data']['species']['url']
-    const speciesAPI = await axios.get(speciesURL)
+  //console.log(speciesAPI['data'])
 
-    //console.log(speciesAPI['data'])
+  //  --  FLAVOR TEXT --  //
+  const flavorList = speciesAPI["data"]["flavor_text_entries"];
+  const flavorListEN = new Array();
 
+  for (let i = 0; i < flavorList.length; i++) {
+    if (flavorList[i]["language"]["name"] == "en")
+      flavorListEN.push(flavorList[i]["flavor_text"]);
+  }
 
-    //  --  FLAVOR TEXT --  //
-    const flavorList = speciesAPI['data']['flavor_text_entries']
-    const flavorListEN = new Array()
+  //console.log(flavorListEN[0])
 
-    for (let i = 0; i < flavorList.length; i++) {
-        if (flavorList[i]['language']['name'] == 'en') flavorListEN.push(flavorList[i]['flavor_text'])
-    }
+  //  --   EVOLUTION  --  //
 
-    //console.log(flavorListEN[0]) 
+  try {
+    const evolutionURL = speciesAPI["data"]["evolution_chain"]["url"];
+    const evolutionAPI = await axios.get(evolutionURL);
 
+    //console.log(evolutionAPI['data'])
 
-    //  --   EVOLUTION  --  //
+    const stage1URL = evolutionAPI["data"]["chain"]["species"]["url"];
+    const stage2URL =
+      evolutionAPI["data"]["chain"]["evolves_to"][0]["species"]["url"];
+    const stage3URL =
+      evolutionAPI["data"]["chain"]["evolves_to"][0]["evolves_to"][0][
+        "species"
+      ]["url"];
 
-    try {
-        const evolutionURL = speciesAPI['data']['evolution_chain']['url']
-        const evolutionAPI = await axios.get(evolutionURL)
+    const stage1SPECIES = await axios.get(stage1URL);
+    const stage2SPECIES = await axios.get(stage2URL);
+    const stage3SPECIES = await axios.get(stage3URL);
 
-        //console.log(evolutionAPI['data'])
+    const stage1 = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${stage1SPECIES["data"]["id"]}/`
+    );
+    const stage2 = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${stage2SPECIES["data"]["id"]}/`
+    );
+    const stage3 = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${stage3SPECIES["data"]["id"]}/`
+    );
+  } catch (TypeError) {
+    console.log("NO EVOLUTION TREE!");
+  }
 
-        const stage1URL = evolutionAPI['data']['chain']['species']['url']
-        const stage2URL = evolutionAPI['data']['chain']['evolves_to'][0]['species']['url']
-        const stage3URL = evolutionAPI['data']['chain']['evolves_to'][0]['evolves_to'][0]['species']['url']
+  // --     SOUNDS    --  //
+  sound = document.getElementById("sound");
 
-        const stage1SPECIES = await axios.get(stage1URL)
-        const stage2SPECIES = await axios.get(stage2URL)
-        const stage3SPECIES = await axios.get(stage3URL)
+  const name = pokeAPI["data"]["name"];
 
-        const stage1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage1SPECIES['data']['id']}/`)
-        const stage2 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage2SPECIES['data']['id']}/`)
-        const stage3 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${stage3SPECIES['data']['id']}/`)
-    } catch (TypeError) {
-        console.log('NO EVOLUTION TREE!')
-    }
+  id = pokeAPI["data"]["id"];
+  if (parseInt(id) >= 10 && parseInt(id) < 100) ID = "0" + id;
+  if (parseInt(id) < 10) ID = "00" + id;
 
+  sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`;
 
+  console.log(sound);
 
-    // --     SOUNDS    --  //
-    sound = document.getElementById('sound')
+  // SLIDE 1
+  const pokeName = pokeAPI["data"]["name"];
+  const pokeID = pokeAPI["data"]["id"];
+  const pokeType = pokeAPI["data"]["types"][0]["type"]["name"];
+  const pokeImage = pokeAPI["data"]["sprites"]["front_default"];
+  const pokeText =
+    flavorListEN[Math.floor(Math.random() * flavorListEN.length)];
 
-    const name = pokeAPI['data']['name']
+  const displayName = document.getElementById("name");
+  displayName.innerHTML = `${pokeName}`;
 
-    id = pokeAPI['data']['id']
-    ID = id
-    if (parseInt(id) >= 10 && parseInt(id) < 100) ID = '0' + id
-    if (parseInt(id) < 10) ID = '00' + id
+  const displayID = document.getElementById("id");
+  displayID.innerHTML = `${pokeID}`;
 
-    let randomInt = Math.floor(Math.random() * 97)
-    if (randomInt < 10) randomInt = '0' + randomInt
+  const displayImage = document.getElementById("image");
+  displayImage.src = `${pokeImage}`;
 
-    if (name == 'pikachu') {
-        sound.src = `./sounds/${ID} - ${capitalize(name)} (${randomInt}).wav`
-    } else {
-        sound.src = `./sounds/${ID} - ${capitalize(name)}.wav`
-    }
+  const displayText = document.getElementById("poke-text");
+  displayText.innerHTML = `${pokeText}`;
 
-    console.log(sound)
+  type.src = `./img/type/${pokeType}.png`;
 
+  switch (pokeType) {
+    case "dark":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "psychic":
+      pokeBack.style.backgroundColor = "#800080";
+      break;
+    case "fighting":
+      pokeBack.style.backgroundColor = "#F5F5DC";
+      break;
+    case "ground":
+      pokeBack.style.backgroundColor = "#A52A2A";
+      break;
+    case "electric":
+      pokeBack.style.backgroundColor = "#FFFF66";
+      break;
+    case "bug":
+      pokeBack.style.backgroundColor = "#228B22";
+      break;
+    case "fire":
+      pokeBack.style.backgroundColor = "#E86100";
+      break;
+    case "ice":
+      pokeBack.style.backgroundColor = "#ADD8E6";
+      break;
+    case "water":
+      pokeBack.style.backgroundColor = "#3399FF";
+      break;
+    case "rock":
+      pokeBack.style.backgroundColor = "#9400D3";
+      break;
+    case "fairy":
+      pokeBack.style.backgroundColor = "#FF00FF";
+      break;
+    case "flying":
+      pokeBack.style.backgroundColor = "#99FFFF";
+      break;
+    case "poison":
+      pokeBack.style.backgroundColor = "#9370DB";
+      break;
+    case "normal":
+      pokeBack.style.backgroundColor = "#CCFFCC";
+      break;
+    case "ghost":
+      pokeBack.style.backgroundColor = "#F8F7ED";
+      break;
+    case "dragon":
+      pokeBack.style.backgroundColor = "#FF6347";
+      break;
+    case "grass":
+      pokeBack.style.backgroundColor = "#008000";
+      break;
+    case "steel":
+      pokeBack.style.backgroundColor = "#C0C0C0";
+      break;
+    default:
+      console.log("TYPE NOT FOUND!");
+  }
 
+  // SLIDE 2
+  const Speed = pokeAPI["data"]["stats"][0]["base_stat"];
+  const Special_Defense = pokeAPI["data"]["stats"][1]["base_stat"];
+  const Special_Attack = pokeAPI["data"]["stats"][2]["base_stat"];
+  const Defense = pokeAPI["data"]["stats"][3]["base_stat"];
+  const Attack = pokeAPI["data"]["stats"][4]["base_stat"];
+  const HP = pokeAPI["data"]["stats"][5]["base_stat"];
 
+  const displaySpeed = document.getElementById("speed");
 
+  displaySpeed.innerHTML = `${Speed}`;
 
-    // SLIDE 1 
-    const pokeName = pokeAPI['data']['name']
-    const pokeID = pokeAPI['data']['id']
-    const pokeType = pokeAPI['data']['types'][0]['type']['name']
-    const pokeImage = pokeAPI['data']['sprites']['front_default']
-    const pokeText = flavorListEN[Math.floor(Math.random() * flavorListEN.length)]
+  // ToDo stat int to bar
 
-    const displayName = document.getElementById('name')
-    displayName.innerHTML = `${pokeName}`
+  // SLIDE 3
+  const moves = new Array();
+  for (let x = 0; x < 6; x++) {
+    moves.push(pokeAPI["data"]["moves"][x]["move"]["name"]);
+  }
 
-    
+  // SLIDE 4
 
-    // SLIDE 2
-    const speed = pokeAPI['data']['stats'][0]['base_stat']
-    const specialDefense = pokeAPI['data']['stats'][1]['base_stat']
-    const specialAttack = pokeAPI['data']['stats'][2]['base_stat']
-    const defense = pokeAPI['data']['stats'][3]['base_stat']
-    const attack = pokeAPI['data']['stats'][4]['base_stat']
-    
-    const HP = pokeAPI['data']['stats'][5]['base_stat']
-
-    // ToDo stat int to bar
-
-    // SLIDE 3
-    const moves = new Array()
-    for (let x = 0; x < 6; x++) {
-        moves.push(pokeAPI['data']['moves'][x]['move']['name'])
-    }
-
-    // SLIDE 4
-
-    /*
+  /*
     const stage1NAME = evolutionAPI['data']['chain']['species']['name']
     const stage1IMG = stage1['data']['sprites']['front_default']
 
