@@ -195,6 +195,8 @@ async function pokeGET(pokeSearch) {
     const displayName = document.getElementById('name')
     displayName.innerHTML = `${pokeName}`
 
+    
+
     // SLIDE 2
     const speed = pokeAPI['data']['stats'][0]['base_stat']
     const specialDefense = pokeAPI['data']['stats'][1]['base_stat']
