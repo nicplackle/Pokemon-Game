@@ -257,8 +257,8 @@ button:focus {
   font-family: "Press Start 2P", cursive;
   font-size: 12pt;
 
-  top: 14%;
-  left: 35%;
+  top: 10%;
+  left: 10%;
 
   position: absolute;
 }
@@ -267,22 +267,30 @@ button:focus {
   font-family: "Press Start 2P", cursive;
   font-size: 12pt;
 
-  top: 14%;
-  left: 80%;
+  top: 10%;
+  left: 74%;
 
   position: absolute;
 }
 
 #image {
-  top: 30%;
-  left: 35%;
+  top: 7%;
+  left: 22%;
+
+  width: 200px;
+  height: 200px;
 
   position: absolute;
 }
 
 #poke-text {
   top: 75%;
-  left: 3%;
+  
+  font-family: "Press Start 2P", cursive;
+
+  font-size: 7pt;
 
   position: absolute;
+
+  text-align: justify;
 }
